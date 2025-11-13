@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import {Coins, Stars} from "lucide-react";
 import Image from "next/image";
 import {useAuth} from "@/context/useAuth";
+import AppHeader from "@/components/AppHeader";
 
 const creditOptions = [
     { credits: 5, price: 500, variantId: "1089671", redirect: () => window.location.href = "https://wireframify.lemonsqueezy.com/buy/37175181-97cd-407e-8f39-c36845c57174" },
@@ -18,7 +19,8 @@ const creditOptions = [
 export default function PricingPage() {
     const {user} = useAuth()
     return (
-        <div className="min-h-screen py-20 px-4">
+        <div className="min-h-screen pb-20 px-4">
+            <AppHeader/>
             <div className="max-w-5xl flex flex-col items-center justify-center gap-4 mx-auto text-center mb-16">
 
                 <Image src='/logo.png' width={170} height={170} className="rounded-lg" alt="logo" />

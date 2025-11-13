@@ -44,13 +44,13 @@ export async function POST(req: NextRequest) {
         }
 
         const prompt = `
-You are a professional React developer and UI/UX designer.
-Generate a **React + TailwindCSS** web page from the provided wireframe image and description.
-- Keep design clean, modern, responsive.
-- Use Lucide React icons.
-- Do NOT use libraries other than Tailwind + Lucide.
-Output valid JSX code only.
-Description: ${description}
+Ты профессиональный разработчик React и UI/UX дизайнер.
+Сгенерируй **React + TailwindCSS** страницу на основе предоставленного изображения макета и описания.
+- Дизайн должен быть чистым, современным и адаптивным.
+- Используй иконки Lucide React.
+- НЕ используй библиотеки кроме Tailwind и Lucide.
+Выводи только корректный JSX код.
+Описание: ${description}
 `;
 
         let response;
@@ -70,7 +70,7 @@ Description: ${description}
         const result = await response.response.text();
         const cleanCode = result.replace(/```[a-zA-Z]*|```/g, "").trim();
 
-        // ✅ Снимаем 1 кредит за генерацию
+
         await updateUserCredits(user.email, -1);
 
         return NextResponse.json({ code: cleanCode, creditsLeft: user?.credits - 1 });

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Loader2Icon } from "lucide-react";
 import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
+import GoogleButton from "@/app/(auth)/_components/GoogleButton";
 
 function SignIn() {
     const { user, setUser } = useAuth()
@@ -42,7 +43,7 @@ function SignIn() {
             setUser(userData?.user)
 
             setIsLoading(false)
-            router.replace('/dashboard')
+            router.replace('/')
             toast.success('Добро пожаловать обратно в Wireframify!')
         } catch (error) {
             toast.error('Ошибка входа! Проверьте данные.')
@@ -55,7 +56,7 @@ function SignIn() {
 
     useEffect(() => {
         if (user) {
-            router.replace("/dashboard")
+            router.replace("/")
         }
     }, [user, router])
 
@@ -114,9 +115,7 @@ function SignIn() {
                 <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent"/>
 
                 {/* Социальные кнопки */}
-                <div className="flex flex-col space-y-3">
-                    <SocialButton handleProvider={handleGoogleSignIn} icon={<FaGoogle/>} text="Войти через Google"/>
-                </div>
+                <GoogleButton/>
             </div>
         </div>
     )

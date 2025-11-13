@@ -71,7 +71,7 @@ const SelectionDetails = ({ record, regenerateCode, isReady, loading }: any) => 
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 disabled={loading}
-                className="bg-white h-[180px]"
+                className="bg-white h-[150px]"
             />
 
             <Button

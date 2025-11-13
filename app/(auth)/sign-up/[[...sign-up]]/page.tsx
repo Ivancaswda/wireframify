@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Loader2Icon } from "lucide-react";
 import Image from "next/image";
 import { FaGoogle } from "react-icons/fa";
+import GoogleButton from "@/app/(auth)/_components/GoogleButton";
 
 function Signup() {
     const { user, loading, setUser } = useAuth()
@@ -41,7 +42,7 @@ function Signup() {
             const userData = await userRes.json();
             setUser(userData.user);
 
-            router.push('/dashboard')
+            router.push('/')
             toast.success('Добро пожаловать в Wireframify!')
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
@@ -58,7 +59,7 @@ function Signup() {
 
     useEffect(() => {
         if (!loading && user) {
-            router.replace('/dashboard')
+            router.replace('/')
         }
     }, [user, loading])
 
@@ -127,10 +128,8 @@ function Signup() {
 
                 <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent"/>
 
-                {/* Социальная кнопка */}
-                <div className="flex flex-col space-y-3">
-                    <SocialButton handleProvider={handleGoogleSignIn} icon={<FaGoogle/>} text="Зарегистрироваться через Google"/>
-                </div>
+
+                <GoogleButton/>
             </div>
         </div>
     )

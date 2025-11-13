@@ -14,6 +14,7 @@ import {useAuth} from "@/context/useAuth";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {Button} from "@/components/ui/button";
 import {LoaderOne} from "@/components/ui/loader";
+import Link from "next/link";
 
 const ViewCodePage = () => {
     const { uid } = useParams();
@@ -136,7 +137,7 @@ const ViewCodePage = () => {
                         <div>
                             <Progress
                                 value={user?.credits || 0}
-                                max={21}
+                                max={40}
                                 label="Оставшиеся звезды"
                             />
                         </div>             <div className="flex items-center justify-start gap-3">
@@ -154,11 +155,16 @@ const ViewCodePage = () => {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <div className='flex flex-col '>
-                                    <p className='py-2 px-2 hover:bg-gray-100 transition-all cursor-pointer'>
+                                    <Link href={"/designs"} >
+                                        <p className='py-2 px-2 hover:bg-gray-100 transition-all cursor-pointer'>
 
-                                        Мой вайфрэймы</p>
-                                    <p className='py-2 px-2 hover:bg-gray-100 transition-all cursor-pointer'>Купить звезды</p>
-                                    <p className='py-2 px-2 hover:bg-gray-100 transition-all cursor-pointer' onClick={() => {
+                                            Мой вайфрэймы</p>
+                                    </Link>
+                                  <Link href="/pricing" >
+                                      <p className='py-2 px-2 hover:bg-gray-100 transition-all cursor-pointer'>Купить звезды</p>
+
+                                  </Link>
+                                     <p className='py-2 px-2 hover:bg-gray-100 transition-all cursor-pointer' onClick={() => {
                                         logout()
                                         router.replace("/sign-up")
                                         toast.success("Logout!")

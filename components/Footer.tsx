@@ -31,9 +31,9 @@ const Footer = () => {
                 <div className="flex flex-col items-center md:items-start space-y-2">
                     <h3 className="font-semibold text-lg text-primary">Навигация</h3>
                     <Link href="/dashboard" className="hover:text-primary transition">Панель</Link>
-                    <Link href="/my-projects" className="hover:text-primary transition">Мои проекты</Link>
+                    <Link href="/designs" className="hover:text-primary transition">Мои проекты</Link>
                     <Link href="/pricing" className="hover:text-primary transition">Тарифы</Link>
-                    <Link href="/about" className="hover:text-primary transition">О проекте</Link>
+                    <Link href="/" className="hover:text-primary transition">О проекте</Link>
                 </div>
 
                 {/* Соцсети */}

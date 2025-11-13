@@ -20,6 +20,7 @@ const AppHeader = () => {
     const {user, logout ,loading} = useAuth()
     const {theme, setTheme} = useTheme()
     const router =useRouter()
+    console.log(user)
     return (
         <div className="flex sticky top-0   justify-between z-20 px-4  items-center">
             <Link href='/'>
@@ -39,7 +40,7 @@ const AppHeader = () => {
                             <Avatar>
                                 <AvatarImage src={user?.avatarUrl} />
                                 <AvatarFallback className="bg-primary dark:bg-primary text-white">
-                                    {user?.userName.charAt(0).toUpperCase()}
+                                    {user?.userName?.charAt(0).toUpperCase()}
                                 </AvatarFallback>
                             </Avatar>
                         </DropdownMenuTrigger>
@@ -48,7 +49,7 @@ const AppHeader = () => {
                                 <FoldersIcon className="mr-2" /> Мои вайфрэймы
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => router.push('/pricing')}>
-                                <CrownIcon className="mr-2" /> Подписка Pro
+                                <CrownIcon className="mr-2" /> Купить кредиты
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
                                 <SunMoonIcon className="mr-2" /> Переключить тему

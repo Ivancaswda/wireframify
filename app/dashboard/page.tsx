@@ -2,16 +2,15 @@
 import React, { useEffect, useState } from 'react'
 import ImageUpload from "@/app/dashboard/_components/ImageUpload";
 import { useAuth } from "@/context/useAuth";
-import Serverr from "@/app/dashboard/_components/Serverr";
 
 const DashboardPage = () => {
-    const { user } = useAuth()
+    const { user, loading: userLoading } = useAuth()
     const [displayText, setDisplayText] = useState('')
-    const fullText = `Добро пожаловать, ${user?.userName || ''}!`
 
-    // Эффект "печати" текста
     useEffect(() => {
-        if (!user?.userName) return
+        if (!user) return
+
+        const fullText = `Добро пожаловать, ${user.userName}!`
         setDisplayText('')
 
         let index = 0
@@ -19,14 +18,20 @@ const DashboardPage = () => {
             setDisplayText(fullText.slice(0, index))
             index++
             if (index > fullText.length) clearInterval(interval)
-        }, 80) // скорость печати
+        }, 80)
 
         return () => clearInterval(interval)
     }, [user])
 
+    if (userLoading || !user) {
+
+        return <div className="flex items-center justify-center h-screen">
+            <p>Загрузка...</p>
+        </div>
+    }
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen px-4 text-center">
-
             <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-primary/90 to-primary/60 bg-clip-text text-transparent mb-8">
                 {displayText}
                 <span className="animate-pulse text-primary">▍</span>
